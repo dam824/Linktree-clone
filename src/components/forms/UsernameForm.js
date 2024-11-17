@@ -3,12 +3,17 @@ import grabUsername from "@/actions/grabUsername";
 import RightIcon from "@/components/icons/RightIcon";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import SubmitButton from "../buttons/SubmitButton";
 /* import UsernameFormResult from '../formResults/UsernameFormResult'; */
 
 export default function UsernameForm({ desiredUsername }) {
   const [taken, setTaken] = useState(false);
+ 
+
   async function handleSumbit(formData) {
+  
     const result = await grabUsername(formData);
+  
     setTaken(result === false);
     if(result){
       redirect('/account/'+formData.get('username'));
@@ -38,13 +43,17 @@ export default function UsernameForm({ desiredUsername }) {
             Username deja pris
           </div>
         )}
-        <button
+        <SubmitButton>
+        <span>Accepter</span>
+        <RightIcon />
+        </SubmitButton>
+       {/*  <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4  mx-auto w-full flex gap-2 items-center justify-center"
+          disabled={isLoading}
+          className="bg-blue-500 disabled:bg-blue-300 text-white disabled:text-gray-200 py-2 px-4  mx-auto w-full flex gap-2 items-center justify-center"
         >
-          <span>Accepter</span>
-          <RightIcon />
-        </button>
+         
+        </button> */}
       </div>
     </form>
   );
