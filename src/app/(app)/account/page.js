@@ -3,7 +3,7 @@ import { Page } from "@/models/Page";
 import mongoose from "mongoose"; // Ajout direct de Mongoose pour test
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
 export default async function AccountPage({ searchParams }) {
   if (mongoose.connection.readyState === 0) {
